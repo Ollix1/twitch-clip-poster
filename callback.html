@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TikTok Login - Twitch Clip Poster</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<p><a href="index.html">&larr; Back</a></p>
+<h1>TikTok authorization</h1>
+<p id="status">Waiting for TikTok response...</p>
+<pre id="out" style="white-space:pre-wrap;word-break:break-all;background:#f4f0ff;padding:12px;border-radius:8px;display:none"></pre>
+<p><a href="terms.html">Terms of Service</a> | <a href="privacy.html">Privacy Policy</a></p>
+<script>
+const p = new URLSearchParams(location.search);
+const s = document.getElementById('status'), o = document.getElementById('out');
+if (p.get('code')) {
+  s.textContent = 'Authorization successful. Copy this code into the app:';
+  o.textContent = p.get('code'); o.style.display = 'block';
+} else if (p.get('error')) {
+  s.textContent = 'Authorization failed: ' + p.get('error') + ' ' + (p.get('error_description') || '');
+} else {
+  s.textContent = 'No authorization data in this URL.';
+}
+</script>
+</body></html>
